@@ -86,8 +86,6 @@ async def cmd_start(message: types.Message):
 
 
 
-
-
 async def main():
     print("Я запустился! Я отсталый!!!.") 
     await dp.start_polling(bot)
