@@ -3,6 +3,7 @@ import os
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import CommandStart
 from dotenv import load_dotenv
+from aiogram import keyboard
 
 
 # Эта команда ищет файл .env и загружает данные из него
@@ -15,9 +16,19 @@ dp = Dispatcher()
 
 @dp.message(CommandStart())
 async def cmd_start(message: types.Message):
-    await message.answer("Привет, я отсталый!")
-
-
+    async def cmd_start(message: types.Message):
+        kb = [
+            [
+                types.KeyboardButton(text="Звонки"),
+                types.KeyboardButton(text="Уроки")
+            ],
+        ]
+        keyboard = types.ReplyKeyboardMarkup(
+            keyboard=kb,
+            resize_keyboard=True,
+            input_field_placeholder="Выберите расписание"
+        )
+    await message.answer("Расписание", reply_markup=keyboard)
 
 
 
